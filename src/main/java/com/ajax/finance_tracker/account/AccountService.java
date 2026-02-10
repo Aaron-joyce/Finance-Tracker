@@ -25,6 +25,13 @@ public class AccountService {
         publisher.publishEvent(new UserRegisteredEvent(account.getUsername(), account.getEmail()));
     }
 
+    @Transactional(readOnly = true)
+    public boolean login(String username, String password) {
+        return repository.findById(username)
+                .map(account -> account.getPassword().equals(password))
+                .orElse(false);
+    }
+
     public record UserDto(String username, String password, String email) {
     }
 }

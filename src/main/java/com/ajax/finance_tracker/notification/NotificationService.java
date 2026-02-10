@@ -29,4 +29,11 @@ public class NotificationService {
         return repository.findByAccountName(accountName)
                 .orElseThrow(() -> new IllegalArgumentException("No settings found for account: " + accountName));
     }
+
+    @Transactional
+    public void addNotification(String accountName, String key, String value) {
+        NotificationSettings settings = getSettings(accountName);
+        settings.getScheduledNotifications().put(key, value);
+        repository.save(settings);
+    }
 }

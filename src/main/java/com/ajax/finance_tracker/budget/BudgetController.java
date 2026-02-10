@@ -1,4 +1,4 @@
-package com.ajax.finance_tracker.statistics;
+package com.ajax.finance_tracker.budget;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/statistics")
+@RequestMapping("/api/budget")
 @RequiredArgsConstructor
-class StatisticsController {
+class BudgetController {
 
-    private final StatisticsService service;
+    private final BudgetService service;
 
-    @GetMapping("/current")
-    Statistic getCurrent(@RequestParam String accountId) {
-        return service.getStatistic(accountId);
+    @GetMapping
+    Budget getBudget(@RequestParam String accountId) {
+        return service.getBudget(accountId);
     }
 
-    @PostMapping("/items")
-    void addItem(@RequestParam String accountId, @RequestBody Item item) {
-        service.addItem(accountId, item);
+    @PostMapping("/rules")
+    void addRule(@RequestParam String accountId, @RequestBody BudgetRule rule) {
+        service.addRule(accountId, rule);
     }
 }

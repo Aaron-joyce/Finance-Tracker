@@ -1,4 +1,4 @@
-package com.ajax.finance_tracker.statistics;
+package com.ajax.finance_tracker.budget;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -14,13 +14,15 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Statistic {
+public class Budget {
     @Id
     @GeneratedValue
     private Long id;
     private String accountId;
-    private BigDecimal totalAmount;
+    private BigDecimal totalProjectedSavings; // Renamed from totalAmount for clarity? Or keep generic?
+    // The prompt implies BudgetRules are for Plan.
+    // Let's keep it simple.
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Item> items = new ArrayList<>();
+    private List<BudgetRule> rules = new ArrayList<>();
 }

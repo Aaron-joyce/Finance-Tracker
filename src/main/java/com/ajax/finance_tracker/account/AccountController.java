@@ -17,4 +17,15 @@ class AccountController {
     void create(@RequestBody AccountService.UserDto userDto) {
         service.registerUser(userDto);
     }
+
+    @PostMapping("/login")
+    org.springframework.http.ResponseEntity<Void> login(@RequestBody LoginDto loginDto) {
+        if (service.login(loginDto.username(), loginDto.password())) {
+            return org.springframework.http.ResponseEntity.ok().build();
+        }
+        return org.springframework.http.ResponseEntity.status(org.springframework.http.HttpStatus.UNAUTHORIZED).build();
+    }
+
+    public record LoginDto(String username, String password) {
+    }
 }

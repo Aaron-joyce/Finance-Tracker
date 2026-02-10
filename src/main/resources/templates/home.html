@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Tracker - Login</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+        --color-primary: #335599;
+        --color-secondary: #6EA4BF;
+        --color-background: #FFFFFA;
+        --color-surface: #ffffff;
+        --color-success: #00b894;
+        --color-danger: #d63031;
+        --color-text: #2d3436;
+        }    
+    </style>
+</head>
+
+<body class="bg-background text-text font-sans flex items-center justify-center min-h-screen m-0 p-0">
+    <div class="flex flex-col items-center justify-center gap-8">
+        <h1 class="text-7xl font-bold text-primary m-0">Finance Tracker</h1>
+
+        <div id="loginCard"
+            class="bg-surface p-8 rounded-xl shadow-xl w-[300px] transition-transform duration-200 hover:-translate-y-1">
+            <h2 class="font-bold text-center text-xl mb-8 text-primary mt-0">Login</h2>
+            <form id="loginForm" class="flex flex-col">
+                <input type="text" id="loginUsername" placeholder="Enter Username" required
+                    class="w-full p-2.5 my-2.5 border border-gray-300 rounded-md box-border focus:outline-none focus:ring-2 focus:ring-primary">
+                <input type="password" id="loginPassword" placeholder="Enter Password" required
+                    class="w-full p-2.5 my-2.5 border border-gray-300 rounded-md box-border focus:outline-none focus:ring-2 focus:ring-primary">
+                <button type="submit"
+                    class="w-full p-2.5 bg-primary text-white border-none rounded-md cursor-pointer font-bold transition-colors duration-300 hover:bg-secondary mt-2.5">
+                    Login
+                </button>
+            </form>
+            <p class="mt-4 text-center text-sm text-text">
+                Don't have an account? <a href="#" onclick="toggleAuth()"
+                    class="text-primary font-bold hover:underline">Register</a>
+            </p>
+        </div>
+
+        <div id="registerCard"
+            class="bg-surface p-8 rounded-xl shadow-xl w-[300px] transition-transform duration-200 hover:-translate-y-1 hidden">
+            <h2 class="font-bold text-center text-xl mb-8 text-primary mt-0">Register</h2>
+            <form id="registerForm" class="flex flex-col">
+                <input type="text" id="regUsername" placeholder="Username" required
+                    class="w-full p-2.5 my-2.5 border border-gray-300 rounded-md box-border focus:outline-none focus:ring-2 focus:ring-primary">
+                <input type="password" id="regPassword" placeholder="Password" required
+                    class="w-full p-2.5 my-2.5 border border-gray-300 rounded-md box-border focus:outline-none focus:ring-2 focus:ring-primary">
+                <input type="password" id="regConfirmPassword" placeholder="Confirm Password" required
+                    class="w-full p-2.5 my-2.5 border border-gray-300 rounded-md box-border focus:outline-none focus:ring-2 focus:ring-primary">
+                <input type="email" id="regEmail" placeholder="Email" required
+                    class="w-full p-2.5 my-2.5 border border-gray-300 rounded-md box-border focus:outline-none focus:ring-2 focus:ring-primary">
+                <button type="submit"
+                    class="w-full p-2.5 bg-primary text-white border-none rounded-md cursor-pointer font-bold transition-colors duration-300 hover:bg-secondary mt-2.5">
+                    Create Account
+                </button>
+            </form>
+            <p class="mt-4 text-center text-sm text-text">
+                Already have an account? <a href="#" onclick="toggleAuth()"
+                    class="text-primary font-bold hover:underline">Login</a>
+            </p>
+        </div>
+    </div>
+    <script src="/js/app.js"></script>
+    <script>
+        function toggleAuth() {
+            const loginCard = document.getElementById('loginCard');
+            const registerCard = document.getElementById('registerCard');
+            loginCard.classList.toggle('hidden');
+            registerCard.classList.toggle('hidden');
+        }
+    </script>
+</body>
+
+</html>
