@@ -18,7 +18,12 @@ if (loginForm) {
             if (response.ok) {
                 window.location.href = `/dashboard/${username}`;
             } else {
-                alert('Invalid username or password');
+                const errorText = await response.text();
+                if (errorText.includes("Account not verified")) {
+                    alert("Account not verified. Please check your email.");
+                } else {
+                    alert('Invalid username or password');
+                }
             }
         } catch (error) {
             console.error('Login Error:', error);
@@ -53,7 +58,7 @@ if (registerForm) {
             });
 
             if (response.ok) {
-                alert('Registration successful! Please login.');
+                window.location.href = '/check-email';
                 registerForm.reset();
             } else {
                 const errorText = await response.text();

@@ -1,0 +1,122 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.ajax:finance_tracker >----------------------
+[INFO] Building finance_tracker 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.0.2:run (default-cli) > test-compile @ finance_tracker >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ finance_tracker ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 8 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ finance_tracker ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ finance_tracker ---
+[INFO] skip non existing resourceDirectory /home/aj/Programs/Projects/Java/finance_tracker/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ finance_tracker ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:4.0.2:run (default-cli) < test-compile @ finance_tracker <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.0.2:run (default-cli) @ finance_tracker ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.2)
+
+2026-02-10T09:50:15.293+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] c.a.f.FinanceTrackerApplication          : Starting FinanceTrackerApplication using Java 25.0.1 with PID 52861 (/home/aj/Programs/Projects/Java/finance_tracker/target/classes started by aj in /home/aj/Programs/Projects/Java/finance_tracker)
+2026-02-10T09:50:15.295+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] c.a.f.FinanceTrackerApplication          : No active profile set, falling back to 1 default profile: "default"
+2026-02-10T09:50:15.339+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-02-10T09:50:15.340+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-02-10T09:50:15.952+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-10T09:50:15.996+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 5 JPA repository interfaces.
+2026-02-10T09:50:16.328+05:30  INFO 52861 --- [finance_tracker ] [cTaskExecutor-1] com.tngtech.archunit.core.PluginLoader   : Detected Java version 25.0.1
+2026-02-10T09:50:17.650+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-02-10T09:50:17.660+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-10T09:50:17.660+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-10T09:50:17.690+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2349 ms
+2026-02-10T09:50:17.906+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-10T09:50:17.938+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-02-10T09:50:18.220+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-10T09:50:18.243+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-10T09:50:18.510+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@625707b7
+2026-02-10T09:50:18.511+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-10T09:50:18.560+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/finance_tracker]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 16.11
+	Default catalog/schema: finance_tracker/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-10T09:50:19.359+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-10T09:50:19.410+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-10T09:50:19.483+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-10T09:50:19.801+05:30  WARN 52861 --- [finance_tracker ] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-10T09:50:19.875+05:30  WARN 52861 --- [finance_tracker ] [  restartedMain] .s.a.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 7fdd2550-ee51-4f8e-9873-5586d65e164a
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-02-10T09:50:19.881+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-02-10T09:50:20.291+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] o.s.b.h.a.H2ConsoleAutoConfiguration     : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/finance_tracker'
+2026-02-10T09:50:20.388+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-02-10T09:50:20.443+05:30  WARN 52861 --- [finance_tracker ] [  restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-02-10T09:50:20.661+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] .s.m.e.c.DefaultEventPublicationRegistry : No publications outstanding!
+2026-02-10T09:50:20.665+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-10T09:50:20.668+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-10T09:50:20.672+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-02-10T09:50:20.683+05:30  INFO 52861 --- [finance_tracker ] [  restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-02-10T09:50:20.692+05:30 ERROR 52861 --- [finance_tracker ] [  restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.954 s
+[INFO] Finished at: 2026-02-10T09:50:20+05:30
+[INFO] ------------------------------------------------------------------------
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    2026-02-10T09:50:39.897+05:30  INFO 52010 --- [finance_tracker ] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-10T09:50:39.898+05:30  INFO 52010 --- [finance_tracker ] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-10T09:50:39.901+05:30  INFO 52010 --- [finance_tracker ] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-02-10T09:53:36.388+05:30  INFO 52010 --- [finance_tracker ] [ionShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-10T09:53:36.395+05:30  INFO 52010 --- [finance_tracker ] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-02-10T09:53:36.407+05:30  INFO 52010 --- [finance_tracker ] [ionShutdownHook] .s.m.e.c.DefaultEventPublicationRegistry : No publications outstanding!
+2026-02-10T09:53:36.409+05:30  INFO 52010 --- [finance_tracker ] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-10T09:53:36.409+05:30  INFO 52010 --- [finance_tracker ] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2026-02-10T09:53:36.414+05:30  INFO 52010 --- [finance_tracker ] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  05:13 min
+[INFO] Finished at: 2026-02-10T09:53:36+05:30
+[INFO] ------------------------------------------------------------------------
