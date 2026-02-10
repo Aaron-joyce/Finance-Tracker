@@ -89,9 +89,65 @@
         <!-- Header -->
         <header class="bg-white shadow-sm p-6 flex justify-between items-center z-10">
             <h2 id="pageTitle" class="text-2xl font-bold text-gray-800">My Plan</h2>
-            <div class="flex items-center gap-4">
-                <button class="text-gray-500 hover:text-blue-600 transition"><i
-                        class="fa-solid fa-bell text-xl"></i></button>
+            <div class="flex items-center gap-4 relative">
+                <button id="notificationBtn" class="text-gray-500 hover:text-blue-600 transition outline-none">
+                    <i class="fa-solid fa-bell text-xl"></i>
+                </button>
+
+                <!-- Notification Panel -->
+                <div id="notificationPanel"
+                    class="hidden absolute top-12 right-0 w-80 bg-white shadow-xl rounded-xl z-50 border border-gray-100 overflow-hidden">
+                    <div class="p-4 border-b flex justify-between items-center bg-gray-50">
+                        <h3 class="font-bold text-gray-800">Notifications</h3>
+                        <button id="closeNotificationBtn" class="text-gray-400 hover:text-gray-600"><i
+                                class="fa-solid fa-times"></i></button>
+                    </div>
+                    <div id="notificationSettingsForm" class="p-4 space-y-4">
+                        <!-- Daily Summary Section -->
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <label class="text-sm font-medium text-gray-700">Daily Email Summary</label>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" id="dailySummaryToggle" class="sr-only peer">
+                                    <div
+                                        class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600">
+                                    </div>
+                                </label>
+                            </div>
+                            <input type="time" id="dailySummaryTime"
+                                class="w-full px-3 py-2 border rounded-lg text-sm bg-gray-50 disabled:opacity-50"
+                                disabled>
+                        </div>
+
+                        <hr class="border-gray-100">
+
+                        <!-- Budget Alert Section -->
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <label class="text-sm font-medium text-gray-700">Over-Budget Alerts</label>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" id="budgetAlertToggle" class="sr-only peer">
+                                    <div
+                                        class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600">
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs text-gray-500">Threshold:</span>
+                                <input type="number" id="budgetThreshold" min="1" max="100"
+                                    class="w-full px-3 py-2 border rounded-lg text-sm bg-gray-50 disabled:opacity-50"
+                                    disabled>
+                                <span class="text-sm text-gray-500">%</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <button id="saveSettingsBtn"
+                                class="w-full bg-blue-600 text-white py-2 rounded-lg text-sm font-bold hover:bg-blue-700 transition">Save
+                                Preferences</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </header>
 
@@ -399,212 +455,7 @@
         /*]]>*/
     </script>
 
-    <script>
-        // --- 1. Planned Distribution (Doughnut) ---
-        if (document.getElementById('plannedDistributionChart')) {
-            const ctx1 = document.getElementById('plannedDistributionChart').getContext('2d');
-            new Chart(ctx1, {
-                type: 'doughnut',
-                data: {
-                    labels: expenseRules.map(r => r.category),
-                    datasets: [{
-                        data: expenseRules.map(r => r.amount),
-                        backgroundColor: ['#ef4444', '#f97316', '#eab308', '#22c55e', '#3b82f6', '#a855f7', '#ec4899', '#64748b'],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'right', labels: { boxWidth: 10 } } }
-                }
-            });
-        }
-
-        // --- 2. Daily Spending (Bar - Last 7 Days) ---
-        if (document.getElementById('dailySpendingChart')) {
-            const ctx2 = document.getElementById('dailySpendingChart').getContext('2d');
-            new Chart(ctx2, {
-                type: 'bar',
-                data: {
-                    labels: dailyKeys,
-                    datasets: [{
-                        label: 'Daily Spending',
-                        data: dailyValues,
-                        backgroundColor: '#3b82f6',
-                        borderRadius: 4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: { y: { beginAtZero: true, grid: { display: false } }, x: { grid: { display: false } } },
-                    plugins: { legend: { display: false } }
-                }
-            });
-        }
-
-        // --- 3. Plan vs Actual (Grouped Bar) ---
-        // --- 3. Plan vs Actual (Grouped Bar) ---
-        if (document.getElementById('planVsActualChart')) {
-            try {
-                console.log('Initializing Plan vs Actual Chart');
-                console.log('Categories:', chartCategories);
-                console.log('Budget:', budgetValues);
-                console.log('Actual:', actualValues);
-
-                const ctx3 = document.getElementById('planVsActualChart').getContext('2d');
-                new Chart(ctx3, {
-                    type: 'bar',
-                    data: {
-                        labels: chartCategories && chartCategories.length > 0 ? chartCategories : ['No Data'],
-                        datasets: [
-                            {
-                                label: 'Planned',
-                                data: budgetValues || [],
-                                backgroundColor: '#94a3b8',
-                                borderRadius: 4
-                            },
-                            {
-                                label: 'Actual',
-                                data: actualValues || [],
-                                backgroundColor: (actualValues || []).map((v, i) => {
-                                    const planned = (budgetValues && budgetValues[i]) || 0;
-                                    return v > planned ? '#ef4444' : '#22c55e';
-                                }),
-                                borderRadius: 4
-                            }
-                        ]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: { y: { beginAtZero: true } }
-                    }
-                });
-            } catch (err) {
-                console.error('Error initializing Plan vs Actual Chart:', err);
-            }
-        }
-
-        // --- 4. Actual Expense Breakdown (Pie) ---
-        if (document.getElementById('expenseBreakdownChart')) {
-            const expensesOnly = varianceData.filter(v => v.type === 'EXPENSE' && v.actual > 0);
-            const ctx4 = document.getElementById('expenseBreakdownChart').getContext('2d');
-
-            new Chart(ctx4, {
-                type: 'pie',
-                data: {
-                    labels: expensesOnly.map(v => v.category),
-                    datasets: [{
-                        data: expensesOnly.map(v => v.actual),
-                        backgroundColor: ['#ef4444', '#f97316', '#eab308', '#22c55e', '#3b82f6', '#a855f7', '#ec4899', '#64748b'],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'right' } }
-                }
-            });
-        }
-    </script>
-
-    <script>
-        // Init logic
-        document.addEventListener('DOMContentLoaded', () => {
-            const params = new URLSearchParams(window.location.search);
-            const tab = params.get('tab') || 'plan';
-            switchTab(tab);
-        });
-
-        function switchTab(tabName) {
-            // Update URL
-            const url = new URL(window.location);
-            url.searchParams.set('tab', tabName);
-            history.pushState(null, '', url);
-
-            // Hide all contents
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-
-            // Reset all nav buttons
-            document.querySelectorAll('.tab-btn-nav').forEach(el => {
-                el.classList.remove('text-blue-400', 'bg-slate-800');
-                el.classList.add('text-slate-400');
-            });
-
-            // Show selected content
-            document.getElementById('tab-' + tabName).classList.add('active');
-
-            // Highlight selected nav button
-            const btn = document.getElementById('btn-' + tabName);
-            if (btn) {
-                btn.classList.remove('text-slate-400');
-                btn.classList.add('text-blue-400', 'bg-slate-800');
-            }
-
-            // Update Headers
-            const titles = { 'plan': 'My Plan', 'tracker': 'Tracker', 'analysis': 'Analysis' };
-            if (titles[tabName]) {
-                document.getElementById('pageTitle').innerText = titles[tabName];
-            }
-        }
-
-        // Init Form Listeners
-        document.getElementById('addRuleForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const data = {
-                title: document.getElementById('ruleTitle').value,
-                amount: document.getElementById('ruleAmount').value,
-                period: document.getElementById('rulePeriod').value,
-                type: document.getElementById('ruleType').value,
-                category: document.getElementById('ruleCategory').value,
-                currency: 'INR'
-            };
-
-            try {
-                const response = await fetch('/api/budget/rules?accountId=' + accountId, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
-                if (response.ok) {
-                    window.location.reload();
-                } else {
-                    alert('Failed to add rule');
-                }
-            } catch (err) {
-                console.error(err);
-                alert('Error adding rule');
-            }
-        });
-
-        document.getElementById('addTxForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const data = {
-                description: document.getElementById('txDesc').value,
-                amount: document.getElementById('txAmount').value,
-                category: document.getElementById('txCategory').value
-            };
-
-            try {
-                const response = await fetch('/api/tracking/transactions?accountId=' + accountId, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
-                if (response.ok) {
-                    window.location.reload();
-                } else {
-                    alert('Failed to add transaction');
-                }
-            } catch (err) {
-                console.error(err);
-                alert('Error adding transaction');
-            }
-        });
-    </script>
+    <script src="/js/dashboard.js"></script>
 </body>
 
 </html>

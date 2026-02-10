@@ -20,20 +20,53 @@ public class NotificationService {
         defaults.put("Weekly Backup", "Active");
         defaults.put("Reminders", "Active");
 
-        NotificationSettings settings = new NotificationSettings(null, event.username(), event.email(), defaults);
+        NotificationSettings settings = new NotificationSettings();
+        settings.setAccountName(event.username());
+        settings.setEmail(event.email());
+        settings.setScheduledNotifications(defaults);
+        settings.setDailySummaryEnabled(false);
+        settings.setBudgetAlertEnabled(true);
+        settings.setBudgetThreshold(90);
+
         repository.save(settings);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public NotificationSettings getSettings(String accountName) {
         return repository.findByAccountName(accountName)
-                .orElseThrow(() -> new IllegalArgumentException("No settings found for account: " + accountName));
+                .orElseGet(() -> {
+                    Map<String, String> defaults = new HashMap<>();
+                    defaults.put("Weekly Backup", "Active");
+                    defaults.put("Reminders", "Active");
+
+                    NotificationSettings settings = new NotificationSettings();
+                    settings.setAccountName(accountName);
+                    settings.setScheduledNotifications(defaults);
+                    settings.setDailySummaryEnabled(false);
+                    settings.setBudgetAlertEnabled(true);
+                    settings.setBudgetThreshold(90);
+
+                    return repository.save(settings);
+                });
     }
 
     @Transactional
     public void addNotification(String accountName, String key, String value) {
         NotificationSettings settings = getSettings(accountName);
         settings.getScheduledNotifications().put(key, value);
+        repository.save(settings);
+    }
+
+    @Transactional
+    public void updateSettings(String accountName, NotificationSettingsDto dto) {
+        NotificationSettings settings = getSettings(accountName);
+        settings.setDailySummaryEnabled(dto.dailySummaryEnabled());
+        settings.setDailySummaryTime(dto.dailySummaryTime());
+        settings.setBudgetAlertEnabled(dto.budgetAlertEnabled());
+        settings.setBudgetThreshold(dto.budgetThreshold());
+        // Email is typically updated via account profile, but we can allow it here if
+        // needed
+        // settings.setEmail(dto.emailAddress());
         repository.save(settings);
     }
 }

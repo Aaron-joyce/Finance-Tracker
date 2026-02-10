@@ -17,12 +17,16 @@ public class TrackingService {
     private final TransactionRepository repository;
     private static final List<Category> INCOME_CATEGORIES = List.of(Category.SALARY);
 
+    private final org.springframework.context.ApplicationEventPublisher publisher;
+
     @Transactional
     public Transaction addTransaction(Transaction transaction) {
         if (transaction.getTimestamp() == null) {
             transaction.setTimestamp(LocalDateTime.now());
         }
-        return repository.save(transaction);
+        Transaction saved = repository.save(transaction);
+        publisher.publishEvent(new TransactionCreatedEvent(saved));
+        return saved;
     }
 
     @Transactional(readOnly = true)

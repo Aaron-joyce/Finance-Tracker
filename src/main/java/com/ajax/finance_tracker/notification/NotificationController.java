@@ -19,11 +19,9 @@ class NotificationController {
     }
 
     @org.springframework.web.bind.annotation.PostMapping("/settings")
-    void addNotification(@RequestParam String accountName,
-            @org.springframework.web.bind.annotation.RequestBody NotificationDto dto) {
-        service.addNotification(accountName, dto.key(), dto.value());
+    void updateSettings(@RequestParam String accountName,
+            @org.springframework.web.bind.annotation.RequestBody NotificationSettingsDto dto) {
+        service.updateSettings(accountName, dto);
     }
 
-    public record NotificationDto(String key, String value) {
-    }
 }

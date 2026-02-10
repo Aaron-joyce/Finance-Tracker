@@ -22,4 +22,9 @@ public class NotificationSettings {
 
     @ElementCollection
     private Map<String, String> scheduledNotifications;
+
+    private Boolean dailySummaryEnabled;
+    private java.time.LocalTime dailySummaryTime;
+    private Boolean budgetAlertEnabled;
+    private Integer budgetThreshold;
 }
