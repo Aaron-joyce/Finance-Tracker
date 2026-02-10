@@ -1,7 +1,6 @@
 package com.ajax.finance_tracker;
 
 import com.ajax.finance_tracker.account.AccountService;
-import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
