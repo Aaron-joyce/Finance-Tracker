@@ -22,7 +22,14 @@ public class SecurityConfig {
                                                 .permitAll()
                                                 .anyRequest().authenticated())
                                 .formLogin(AbstractHttpConfigurer::disable)
-                                .httpBasic(AbstractHttpConfigurer::disable);
+                                .httpBasic(AbstractHttpConfigurer::disable)
+                                .sessionManagement(session -> session
+                                                .sessionCreationPolicy(
+                                                                org.springframework.security.config.http.SessionCreationPolicy.IF_REQUIRED)
+                                                .sessionFixation(fixation -> fixation.migrateSession())
+                                                .invalidSessionUrl("/login?invalid")
+                                                .maximumSessions(1)
+                                                .expiredUrl("/login?expired"));
 
                 return http.build();
         }
